@@ -16,17 +16,20 @@ task.once('greet',()=>{
     console.log("System Started...");
 })
 
-task.off("exit"(name) =>{
-    console.log(`system is shutting down by $(name)`);
+task.once("exit", (name) => {
+    console.log(`system is shutting down by ${name}`);
 });
 
 
-
 task.emit('greet','Arnav Chauhan');
-//task.emit('greet','arnav');
-//task.emit('greet','arnav chauhan');
-//task.emit("exit",'Manager');
-
-const shuttingDown=(name)=>
+console.log();
+task.emit('greet','arpit');
+task.off('greet',sayHi);
+task.emit('greet',' arnav');  //
+console.log();
+task.emit("exit",'Manager');   // execute only once
+task.emit("exit",'Employee');  //won't affect
+console.log("total listeners for greet event: ",
+    task.listenerCount('greet'));
 
 task.emit('greet','Manager');
