@@ -52,8 +52,13 @@ const updateQuantity = async (product) => {
   const cart = await getCart();
   const isFoundInCart = cart.find((item) => item.id === product.id);
   if (isFoundInCart) {
-    isFoundInCart.qty -=1;
+    if(isFoundInCart.qty == 1){
+    await removeProduct(product);
+    }
+    else{
+      isFoundInCart.qty -=1;
     await saveCart(cart);
+    }
     console.log(`${isFoundInCart.name} quantity updated from 🛒`);
   } else{
     console.log(`product with id ${product.id} not found`);
@@ -95,8 +100,9 @@ const main = async () => {
         console.log("remove product");
         break;
       case 4:
-        let productid = await cin.question("Enter product id:");
-        await updateQuantity({ id: Number(productid) });
+        let productid = await cin.question("Enter product id and option(+/-):");
+        const [id, option] = productid.split(",");
+        await updateQuantity({ id: Number(id), option });
         console.log("update quantity");
         break;
       case 5:
