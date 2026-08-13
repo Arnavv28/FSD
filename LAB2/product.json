@@ -1,0 +1,14 @@
+[
+  {
+    "id": 111,
+    "name": "HP Laptop",
+    "price": 47000,
+    "qty": 3
+  },
+  {
+    "id": null,
+    "name": "40000",
+    "price": 1,
+    "qty": null
+  }
+]
