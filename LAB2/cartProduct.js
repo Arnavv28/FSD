@@ -46,6 +46,18 @@ const displayCart = async () => {
   console.table(cart);
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   console.log(`Total payble amount Rs. ${total}`);
+}
+
+const updateQuantity = async (product) => {
+  const cart = await getCart();
+  const isFoundInCart = cart.find((item) => item.id === product.id);
+  if (isFoundInCart) {
+    isFoundInCart.qty -=1;
+    await saveCart(cart);
+    console.log(`${isFoundInCart.name} quantity updated from 🛒`);
+  } else{
+    console.log(`product with id ${product.id} not found`);
+  }
 };
 
 const main = async () => {
@@ -83,6 +95,8 @@ const main = async () => {
         console.log("remove product");
         break;
       case 4:
+        let productid = await cin.question("Enter product id:");
+        await updateQuantity({ id: Number(productid) });
         console.log("update quantity");
         break;
       case 5:
