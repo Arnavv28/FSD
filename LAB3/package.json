@@ -2,7 +2,7 @@
   "name": "lab3",
   "version": "1.0.0",
   "description": "HTTP - HYPER TEXT TRANSFER PROTOCOL\r HTML - HYPER TEXT MARKUP LANGUAGE\r CSS - CASCADE STYLE SHEET",
-  "main": "app.js",
+  "main": "prg3.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
